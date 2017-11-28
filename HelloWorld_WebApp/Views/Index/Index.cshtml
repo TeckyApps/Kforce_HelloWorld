@@ -1,0 +1,30 @@
+﻿<script type="text/javascript">
+    // jquery on document load function
+    $(document).ready(function () {
+        getValue();
+    });
+    // ajax function that gets the hello world value from the controller
+    function getValue() {
+       // debugger;
+        $.ajax({
+            url: '@Url.Action("DisplayResult", "Index")',
+            dataType: "json",
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            cache: false,
+            data: {},
+            success: function (data) {
+                $('#txtOutput').val(data); // use jquery to set the value of the textbox
+            },
+            error: function (er) {
+                alert('error');
+            }
+        });
+    }
+</script>
+<div class="row">
+    <div class="col-md-12" style="text-align:center">
+        @(Html.Kendo().TextBox().Name("txtOutput").HtmlAttributes(new { style = "width: 50%;font-family:Arial;font-size:18px" }));
+    </div>
+</div>
+
